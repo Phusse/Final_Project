@@ -9,8 +9,8 @@ class HandwritingClassifier:
         self.class_names = class_names
         self.threshold = threshold
 
-        # ✅ Load a ResNet18 model hwithout pretrained weights
-        self.model = models.resnet18(pretrained=False)
+        # ✅ Load a ResNet18 model with pretrained weights
+        self.model = models.resnet18(pretrained=True)
 
         # ✅ Modify the first conv layer to accept 1-channel grayscale input
         self.model.conv1 = nn.Conv2d(

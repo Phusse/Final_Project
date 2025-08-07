@@ -30,8 +30,10 @@ async def predict_handwriting(file: UploadFile = File(...)):
     try:
         image = Image.open(io.BytesIO(contents))
         image = ImageOps.exif_transpose(image)  # Correct orientation from EXIF
-        if image.width > image.height:
-            image = image.rotate(-90, expand=True)  # Optional heuristic
+        # The following heuristic is too risky and has been disabled.
+        # It assumes portrait is always the correct orientation, which is not guaranteed.
+        # if image.width > image.height:
+        #     image = image.rotate(-90, expand=True)
         image = image.convert('L')  # Ensure grayscale
     except Exception:
         raise HTTPException(status_code=400, detail="Could not open image. Ensure it’s a valid image file.")
