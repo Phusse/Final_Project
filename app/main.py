@@ -12,12 +12,6 @@ app = FastAPI()
 # Load trained handwriting classifier model
 model = load_model()
 
-# Confidence thresholds for human-friendly messaging
-CONFIDENCE_THRESHOLDS = {
-    "certain": 0.80,
-    "likely": 0.70
-}
-
 @app.post("/predict")
 async def predict_handwriting(file: UploadFile = File(...)):
     # Step 1: Validate file type
@@ -55,13 +49,10 @@ async def predict_handwriting(file: UploadFile = File(...)):
     confidence = float(torch.clamp(torch.tensor(confidence), 0.0, 1.0).item())
 
     # Step 5: Generate interpretation
-    if confidence >= CONFIDENCE_THRESHOLDS["certain"]:
-        message = f"This handwriting definitely belongs to {label}."
-    elif confidence >= CONFIDENCE_THRESHOLDS["likely"]:
-        message = f"This handwriting likely belongs to {label}."
-    else:
-        label = "Unknown writer"
+    if label == "Unknown writer":
         message = "This handwriting is not recognized. Likely an impersonator or someone not in the training set."
+    else:
+        message = f"This handwriting is recognized as belonging to {label}."
 
     # Step 6: Return result
     return JSONResponse(
