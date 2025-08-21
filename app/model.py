@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from torchvision import models
 
 class HandwritingClassifier:
-    def __init__(self, model_path, class_names, threshold=0.4):
+    def __init__(self, model_path, class_names, threshold=0.85):
         self.class_names = class_names
         self.threshold = threshold
 
