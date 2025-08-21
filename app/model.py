@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models
+from torchvision.models import ResNet18_Weights
 
 class HandwritingClassifier:
     def __init__(self, model_path, class_names, threshold=0.85):
@@ -10,7 +11,7 @@ class HandwritingClassifier:
         self.threshold = threshold
 
         # ✅ Load a ResNet18 model with pretrained weights
-        self.model = models.resnet18(pretrained=True)
+        self.model = models.resnet18(weights=ResNet18_Weights.DEFAULT)
 
         # ✅ Modify the first conv layer to accept 1-channel grayscale input
         self.model.conv1 = nn.Conv2d(
@@ -54,5 +55,5 @@ def load_model():
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     model_path = os.path.join(BASE_DIR, "models", "handwriting_model.pt")
 
-    class_names = ["Agino", "Christabel", "Dubem", "Goodness"]
+    class_names = ["Agino", "Christabel", "Dubem", "Goodness", "David_Lee", "eshiet", "John_Martin", "Thompson"]
     return HandwritingClassifier(model_path, class_names)
