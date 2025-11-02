@@ -30,7 +30,9 @@ class HandwritingClassifier:
         if not os.path.isfile(model_path):
             raise FileNotFoundError(f"Model file not found at: {model_path}")
         
-        self.model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")))
+        checkpoint = torch.load(model_path, map_location=torch.device("cpu"))
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.class_names = checkpoint['class_names'] # Update class_names from loaded checkpoint
         self.model.eval()
 
     def predict(self, input_tensor):
@@ -55,5 +57,10 @@ def load_model():
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     model_path = os.path.join(BASE_DIR, "models", "handwriting_model.pt")
 
-    class_names = ["Agino", "Christabel", "Dubem", "Goodness", "David_Lee", "eshiet", "John_Martin", "Thompson"]
+    # Load the checkpoint to get class_names
+    if not os.path.isfile(model_path):
+        raise FileNotFoundError(f"Model file not found at: {model_path}")
+    checkpoint = torch.load(model_path, map_location=torch.device("cpu"))
+    class_names = checkpoint['class_names']
+
     return HandwritingClassifier(model_path, class_names)

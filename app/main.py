@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, ImageOps
 import imghdr
 import io
@@ -8,6 +9,18 @@ from app.model import load_model
 from app.utils import preprocess_image
 
 app = FastAPI()
+
+# CORS for local frontend dev (Vite default: 5173)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load trained handwriting classifier model
 model = load_model()
