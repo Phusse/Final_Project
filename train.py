@@ -11,8 +11,8 @@ from torchvision import models
 # === Config ===
 DATA_DIR = 'data/handwriting_dataset_training'
 MODEL_PATH = 'models/handwriting_model.pt'
-NUM_EPOCHS = 10
-BATCH_SIZE = 16
+NUM_EPOCHS = 50
+BATCH_SIZE = 32
 LEARNING_RATE = 0.001
 
 # === Preprocessing: Grayscale, resize, normalize ===
