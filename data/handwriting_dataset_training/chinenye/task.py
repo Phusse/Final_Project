@@ -3,7 +3,7 @@ import pytesseract
 import os
 import random
 
-INPUT_IMAGE = "IMG_20250826_065731.jpg"
+INPUT_IMAGE = "IMG_20250826_065809.jpg"
 OUTPUT_DIR = r"C:\Users\TopBoy\Desktop\Final_Project\data\handwriting_dataset_training\chinenye\nenye"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
