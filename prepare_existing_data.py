@@ -5,8 +5,8 @@ from pathlib import Path
 from tqdm import tqdm
 
 # === CONFIG ===
-INPUT_DIR = Path(r'C:\Users\TopBoy\Desktop\Final_Project\data\handwriting_dataset_testing') # Where your 80 images are now
-OUTPUT_DIR = Path(r'C:\Users\TopBoy\Desktop\Final_Project\data\handwriting_dataset_testing\ready_for_training')          # New folder for fixed data
+INPUT_DIR = Path(r'C:\Users\HP\Documents\Final_Project\data\handwriting_dataset_testing') # Where your 80 images are now
+OUTPUT_DIR = Path(r'C:\Users\HP\Documents\Final_Project\data\handwriting_dataset_testing\ready_for_training')          # New folder for fixed data
 
 def make_square_patches(img_path, output_folder):
     img = cv2.imread(str(img_path), cv2.IMREAD_GRAYSCALE)
