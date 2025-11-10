@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, X, CheckCircle, Loader2, Image as ImageIcon } from 'lucide-react';
-import blobberLogo from '../public/Elegant_Minimalist_Calligraphy_Initials_logo__1_-removebg-preview.png';
+import blobberLogo from '/Elegant_Minimalist_Calligraphy_Initials_logo__1_-removebg-preview.png';
 import './App.css';
 
 // Define the shape of the data returned by the AI model
